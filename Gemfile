@@ -8,6 +8,7 @@ gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'ckeditor', '3.7.0.rc3'
+gem 'pg'
 
 
 # Gems used only for assets and not required
