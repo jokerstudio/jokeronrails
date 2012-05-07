@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Joker on Rails</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+	
+	<div class='navbar navbar-fixed-top'>
+		<div class='navbar-inner'>
+			<div class='container'>
+					<div class=' brand'>
+						<a href="<%= posts_path %>" style="color:#ffffff;"><h3>BLOGGY...<i class='icon-comment icon-white'></i></h3></a>
+					</div>
+						<ul class="nav pull-right">
+							<li><a href="/">Home</a></li>				
+				          	<li><a href="/">Sign up</a></li>
+				            <li><a href="/signin">Sign in</a></li>
+	        			</ul>
+			</div>
+		</div>
+	</div>
+
+<div class='container'>
+	<div class='content'>
+		<% flash.each do |name,msg| %>
+			<div class="alert alert-<%= name == :notice ? 'success' : 'error' %>">
+				<a class='close' data-dismiss="alert">x</a>
+				<%= msg %>
+			</div>
+		<% end %>
+
+		<%= yield %>
+		</br></br>
+		<%= render 'footer' %>
+
+		</br></br></br>
+		<%= debug(params) if Rails.env.development? %>
+	</div>
+</div>
+</br></br></br>
+
+
+</body>
+</html>
+
