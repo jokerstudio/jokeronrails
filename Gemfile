@@ -8,13 +8,9 @@ gem 'rails', '3.2.3'
 
 gem 'bootstrap-sass'
 gem 'ckeditor', '3.7.0.rc3'
+gem 'pg'
+gem 'heroku'
 
-group :development, :test do
-  gem 'sqlite3'
-end
-group :production do
-  gem 'pg'
-end
 
 
 # Gems used only for assets and not required
