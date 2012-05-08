@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.find(:all,:order => "updated_at")
     @posts.reverse!
 
     respond_to do |format|
@@ -42,9 +42,11 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    @post.created_at = DateTime.now
     @post.body.html_safe
+    flash[:notice] =  "Post #{@post.title} was successfully"
     if @post.save
-    redirect_to @post, notice: 'Post was successfully create.'
+    redirect_to show_url(@post.id,@post.title) #:action => 'show', :id => @post.id, :title => @post.title
     end
    
   end
@@ -53,15 +55,10 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    flash[:notice] =  "Post was successfully updated."
-    respond_to do |format|
+    @post.updated_at = DateTime.now
+    flash[:notice] =  "Update #{@post.title} was successfully updated."
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post}
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+        redirect_to show_url(@post.id,@post.title)
     end
   end
 
@@ -70,9 +67,9 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-
+    flash[:notice] =  "Delete #{@post.title} was successfully."
     respond_to do |format|
-      format.html { redirect_to posts_url ,notice: 'Delete successfully.'}
+      format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
   end
