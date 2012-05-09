@@ -1,0 +1,23 @@
+<div class='navbar navbar-fixed-top'>
+		<div class='navbar-inner'>
+			<div class='container'>
+					<div class=' brand'>
+						<a href="<%= posts_path %>" style="color:#ffffff;"><h3>JOKERONRAILS...<i class='icon-comment icon-white'></i></h3></a>
+					</div>
+						<ul class="nav pull-right">
+							<% if current_user %>
+								<li><%= content_tag :a, href: edit_user_registration_path do %>
+									<i class='icon-user icon-white'></i> <%= current_user.name.blank? ? current_user.email : current_user.name  %>
+									<% end %>
+								</li>
+								<li><%= content_tag :a, href: destroy_user_session_path, data: {method: 'delete'} do %>
+									<i class='icon-off icon-white'></i> Sign out
+									<% end %></li>
+							<% else %>				
+					          	<li><%= link_to "Sign up", new_user_registration_path %></a></li>
+					            <li><%= link_to "Sign in", new_user_session_path %></li>
+				            <% end %>
+	        			</ul>
+			</div>
+		</div>
+</div>

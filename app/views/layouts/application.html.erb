@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <script>
-  	window.setTimeout( hideTagFn, 2000);
+  	window.setTimeout( hideTagFn, 4000);
 	function hideTagFn(){
     $('.alert').fadeOut('slow');
   	}
@@ -18,21 +18,8 @@
 </head>
 <body>
 	
-	<div class='navbar navbar-fixed-top'>
-		<div class='navbar-inner'>
-			<div class='container'>
-					<div class=' brand'>
-						<a href="<%= posts_path %>" style="color:#ffffff;"><h3>JOKERONRAILS...<i class='icon-comment icon-white'></i></h3></a>
-					</div>
-						<ul class="nav pull-right">
-							<li><a href="/">Home</a></li>				
-				          	<li><a href="/">Sign up</a></li>
-				            <li><a href="/signin">Sign in</a></li>
-	        			</ul>
-			</div>
-		</div>
-	</div>
-
+	
+<%= render 'layouts/header' %>
 <div class='container'>
 	<div class='content'>
 		<div class='noticealert' style="height:40px;margin-top:-20px">
@@ -44,13 +31,12 @@
 			<% end %>
 		</div>
 
-		<%= yield %>
+
+		<%= yield %> 
+
 
 		</br></br>
-		<%= render 'footer' %>
-
-		</br></br></br>
-		<%= debug(params) if Rails.env.development? %>
+		<%= render 'layouts/footer' %>
 	</div>
 </div>
 </br></br></br>

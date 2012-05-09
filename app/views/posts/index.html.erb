@@ -1,7 +1,11 @@
 <h1><i class='icon-pencil'></i>Posts</h1>
 
 <ul class='main-list well'>
+	
+<% if current_user.try(:admin?)%>
 <a href="<%= new_path %>" class='btn btn-small btn-primary pull-right'><i class='icon-plus icon-white'></i>New Post</a>
+<% end %>
+
 </br>
 </br>
 <% @posts.each do |post| %>
@@ -9,8 +13,12 @@
     <div class='span6'><%= post.title%></div>
     <div class='pull-right'>
     <a href="<%= post.id%>/<%=post.title %>.html" class='btn btn-mini'><i class='icon-zoom-in'></i></a>
+
+    <% if current_user.try(:admin?)%>
     <a href="edit/<%= post.id%>" class="btn btn-mini"><i class='icon-edit'></i></a>
     <a href="<%= delete_path(post.id) %>" class='btn btn-danger btn-mini' data-confirm="Are you sure?" data-method="delete"><i class='icon-remove'></i></a>
+    <% end %>
+
   </div>
 </li>
 <% end %>

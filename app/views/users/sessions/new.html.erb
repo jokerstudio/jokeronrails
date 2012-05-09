@@ -1,0 +1,36 @@
+<h2>Sign in <small> - Need an account? <%= link_to "Register", new_registration_path(resource_name) %></small></h2>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-horizontal well clearfix'}) do |f| %>
+  <%= content_tag :fieldset, class: 'span4 offset3' do %>
+  <div class='control-group'>
+    <%= f.label :email, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.email_field :email %>
+    </div>
+  </div>
+
+  <div class='control-group'>
+    <%= f.label :password, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.password_field :password %>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class='control-group'>
+      <%= f.label :remember_me, class: 'control-label' %>
+      <%= content_tag :div, class: 'controls' do %>
+        <%= content_tag :label, class: 'checkbox' do %>
+          For two weeks
+          <%= f.check_box :remember_me %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end -%>
+  <div class='pull-left span3'>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+  </div>
+  <div class='pull-right'>
+      <%= f.submit "Sign in", class: 'btn btn-primary' %>
+  </div>
+  <% end %>
+<% end %>

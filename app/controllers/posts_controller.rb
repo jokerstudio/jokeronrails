@@ -1,4 +1,6 @@
+# coding: utf-8
 class PostsController < ApplicationController
+  before_filter :authenticate_user!, only: [:update,:create,:destroy,:edit,:show]
   # GET /posts
   # GET /posts.json
   def index
@@ -44,7 +46,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.created_at = DateTime.now
     @post.body.html_safe
-    flash[:notice] =  "Post #{@post.title} was successfully"
+    flash[:notice] =  "บันทึกหัวข้อ #{@post.title}  เรียบร้อย"
     if @post.save
     redirect_to show_url(@post.id,@post.title) #:action => 'show', :id => @post.id, :title => @post.title
     end
@@ -56,7 +58,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.updated_at = DateTime.now
-    flash[:notice] =  "Update #{@post.title} was successfully updated."
+    flash[:notice] =  "อัพเดทหัวข้อ #{@post.title} เรียบร้อย"
       if @post.update_attributes(params[:post])
         redirect_to show_url(@post.id,@post.title)
     end
@@ -67,7 +69,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] =  "Delete #{@post.title} was successfully."
+    flash[:notice] =  "ลบ #{@post.title} สำเร็จ"
     respond_to do |format|
       format.html { redirect_to posts_url }
       format.json { head :no_content }

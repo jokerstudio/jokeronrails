@@ -10,6 +10,7 @@ gem 'bootstrap-sass'
 gem 'pg'
 gem 'heroku'
 gem "ckeditor", :git => "git://github.com/joe1chen/ckeditor.git"  #compatible for IE
+gem 'devise'
 
 
 # Gems used only for assets and not required
