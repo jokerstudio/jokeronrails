@@ -9,7 +9,7 @@ gem 'rails', '3.2.3'
 gem 'bootstrap-sass'
 gem 'pg'
 gem 'heroku'
-gem "ckeditor"#, :git => "git://github.com/joe1chen/ckeditor.git"  #compatible for IE
+gem "ckeditor", "3.7.0.rc3"#, :git => "git://github.com/joe1chen/ckeditor.git"  #compatible for IE
 gem 'devise'
 
 

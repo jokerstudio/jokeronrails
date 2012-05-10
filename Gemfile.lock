@@ -34,9 +34,9 @@ GEM
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.0.2)
     builder (3.0.0)
-    ckeditor (3.6.3)
-      mime-types (~> 1.16)
-      orm_adapter (~> 0.0.5)
+    ckeditor (3.7.0.rc3)
+      mime-types (~> 1.17.2)
+      orm_adapter (~> 0.0.6)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -131,7 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
-  ckeditor
+  ckeditor (= 3.7.0.rc3)
   coffee-rails (~> 3.2.1)
   devise
   heroku
