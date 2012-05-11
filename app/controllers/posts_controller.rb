@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.find(:all,:order => "updated_at")
+    @posts = Post.find(:all, :order => "updated_at")
     @posts.reverse!
 
     respond_to do |format|
