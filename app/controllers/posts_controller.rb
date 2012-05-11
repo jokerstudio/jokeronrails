@@ -1,6 +1,5 @@
 # coding: utf-8
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, only: [:update,:create,:destroy,:edit,:show]
   # GET /posts
   # GET /posts.json
   def index
