@@ -1,7 +1,10 @@
 Bloggy::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   devise_for :users
 
   resources :posts
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -11,7 +14,7 @@ Bloggy::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
   match 'edit/:id' => 'posts#edit' ,:via => :get,:as => 'post_edit'
   get "thank/edit/:id/:title" => "posts#edit", :as => "thank"
-  match ':id/:title' => 'posts#show' ,:via => :get,:as => 'show'
+  match ':id-:title' => 'posts#show' ,:via => :get,:as => 'show'
   match 'new' => 'posts#new' ,:via => :get,:as => 'new'
   match ':id' => 'posts#destroy' ,:via => :delete,:as => 'delete'
   # Sample of named route:

@@ -1,6 +1,25 @@
 # coding: utf-8
 class PostsController < ApplicationController
+  #before_filter :authenticate_user!, only: [:update,:create,:destroy,:edit,:show]
+  before_filter :user_block!, only: [:update,:create,:destroy,:edit,:new]
+  before_filter :guest_block!
+
+  #Authenticate Users
+  def guest_block!     
+      if current_user.blank?
+        redirect_to user_session_url, alert:  "เข้าสู่ระบบก่อนใช้งาน"
+      end
+  end
+
+  def user_block!     
+      if !current_user.try(:admin?)
+        redirect_to root_url, alert:  "คุณไม่มีสิทธิในส่วนนี้"
+      end
+  end
+  
+
   # GET /posts
+
   # GET /posts.json
   def index
     @posts = Post.find(:all, :order => "updated_at")
@@ -15,6 +34,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    
     @post = Post.find(params[:id])
 
     respond_to do |format|
@@ -45,9 +65,8 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.created_at = DateTime.now
     @post.body.html_safe
-    flash[:notice] =  "บันทึกหัวข้อ #{@post.title}  เรียบร้อย"
     if @post.save
-    redirect_to show_url(@post.id,@post.title) #:action => 'show', :id => @post.id, :title => @post.title
+    redirect_to show_url(@post.id,@post.title), notice:  "บันทึกหัวข้อ #{@post.title}  เรียบร้อยแล้ว"
     end
    
   end
