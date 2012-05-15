@@ -2,7 +2,7 @@
 class PostsController < ApplicationController
   #before_filter :authenticate_user!, only: [:update,:create,:destroy,:edit,:show]
   before_filter :user_block!, only: [:update,:create,:destroy,:edit,:new]
-  before_filter :guest_block!
+  #before_filter :guest_block!
 
   #Authenticate Users
   def guest_block!     
