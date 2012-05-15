@@ -11,15 +11,14 @@ class PostsController < ApplicationController
       end
   end
 
-  def user_block!     
-      if !current_user.try(:admin?)
-        redirect_to root_url, alert:  "คุณไม่มีสิทธิในส่วนนี้"
-      end
-  end
+  # def user_block!     
+  #     if !current_user.try(:admin?)
+  #       redirect_to root_url, alert:  "คุณไม่มีสิทธิในส่วนนี้"
+  #     end
+  # end
   
 
   # GET /posts
-
   # GET /posts.json
   def index
     @posts = Post.find(:all, :order => "updated_at")
