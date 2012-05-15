@@ -5,17 +5,17 @@ class PostsController < ApplicationController
   #before_filter :guest_block!
 
   #Authenticate Users
-  def guest_block!     
-      if current_user.blank?
-        redirect_to user_session_url, alert:  "เข้าสู่ระบบก่อนใช้งาน"
-      end
-  end
-
-  # def user_block!     
-  #     if !current_user.try(:admin?)
-  #       redirect_to root_url, alert:  "คุณไม่มีสิทธิในส่วนนี้"
+  # def guest_block!     
+  #     if current_user.blank?
+  #       redirect_to user_session_url, alert:  "เข้าสู่ระบบก่อนใช้งาน"
   #     end
   # end
+
+  def user_block!     
+      if !current_user.try(:admin?)
+        redirect_to root_url, alert:  "คุณไม่มีสิทธิในส่วนนี้"
+      end
+  end
   
 
   # GET /posts
