@@ -3,8 +3,13 @@
 <head>
 
   <title>Joker on Rails</title>
+
   <%= javascript_include_tag params[:controller] %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "ckeditor/init" %>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "jquery_ujs" %>
+  <%= javascript_include_tag "bootstrap-alert" %>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -23,23 +28,22 @@
 	
 <%= render 'layouts/header' %>
 <div class='container'>
-	<div class='content'>
-		<div class='noticealert' style="height:40px;margin-top:-20px">
-			<% flash.each do |name,msg| %>
-				<div class="alert alert-<%= name == :notice ? 'success' : 'error' %>">
-					<a class='close' data-dismiss="alert">x</a>
-					<%= msg %>
-				</div>
-			<% end %>
-		</div>
+ <div class='content'>
+  <div class='noticealert' style="height:40px;margin-top:-20px">
+   <% flash.each do |name,msg| %>
+	 <div class="alert alert-<%= name == :notice ? 'success' : 'error' %>">
+	  <a class='close' data-dismiss="alert">x</a>
+	   <%= msg %>
+	 </div>
+	<% end %>
+   </div>
 
 
-		<%= yield %> 
+  <%= yield %> 
 
-
-		<br><br>
-		<%= render 'layouts/footer' %>
-	</div>
+  <br><br>
+  <%= render 'layouts/footer' %>
+ </div>
 </div>
 <br><br><br>
 
